@@ -12,5 +12,11 @@ pipeline {
          git 'https://github.com/devopscbabu/star-agile-insurance-project.git'
 	 }
        }
-     }
-   }
+    stage('Build the Application'){
+        steps {
+	echo "Cleaning... Compiling...Testing... Packaging..."
+	sh 'mvn clean package'
+            }
+          }
+        }
+      }
