@@ -6,9 +6,11 @@ pipeline {
     }
   stages {
     
-    stage('Checkout')
+    stage('Checkout') {
        steps {
          echo 'Checkout the code from GitRepo'
          git 'https://github.com/devopscbabu/star-agile-insurance-project.git'
 	 }
-       
+       }
+     }
+   }
