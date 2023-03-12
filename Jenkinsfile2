@@ -28,5 +28,13 @@ pipeline {
 	sh 'docker build -t cbabu85/insureapp:latest .'
         }
       }
+    stage('Push Image to DockerHub') {
+      steps {
+      withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPassword')]) {
+      sh 'docker login -u cbabu85 -p Dockerhub@321'
+      }
+      sh 'docker push cbabu85/insureapp'
+      }
+      }
       }
       }
