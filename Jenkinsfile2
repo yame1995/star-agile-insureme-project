@@ -30,10 +30,10 @@ pipeline {
       }
     stage('Push Image to DockerHub') {
       steps {
-      withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPassword')]) {
-      sh 'docker login -u cbabu85 -p $(dockerHubPassword)'
-      }
+     withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+      sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
       sh 'docker push cbabu85/insureapp:latest'
+      }
       }
       }
       }
