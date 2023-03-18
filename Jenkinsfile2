@@ -36,5 +36,10 @@ pipeline {
       }
       }
       }
+      stage('Deploy using Ansible') {
+        steps {
+	sh 'ansiblePlaybook credentialsId: 'prod-server', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts', playbook: 'deploy-playbook.yml''
+        }
+      }
       }
       }
