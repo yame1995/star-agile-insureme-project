@@ -15,3 +15,5 @@
     command : sudo systemctl start docker
     become : yes
     become_user : root
+  - name : Deploy the image and Run as a Container
+    command : docker run -itd -p 8080:8080 cbabu85/insureapp:latest
