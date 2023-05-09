@@ -9,7 +9,7 @@ pipeline {
     stage('Checkout') {
        steps {
          echo 'Checkout the code from GitRepo'
-         git 'https://github.com/devopscbabu/star-agile-insurance-project.git'
+         git 'https://github.com/yame1995/star-agile-insureme-project.git'
 	 }
        }
     stage('Build the Application'){
@@ -18,28 +18,13 @@ pipeline {
 	sh 'mvn clean package'
             }
           }
-    stage('Publish Reports') {
-        steps {
-	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/Insurance-Project/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
-	}
-	}
-    stage('Docker Image Creation') {
-        steps {
-	sh 'docker build -t cbabu85/insureapp:latest .'
-        }
-      }
-    stage('Push Image to DockerHub') {
-      steps {
-     withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-      sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-      sh 'docker push cbabu85/insureapp:latest'
-      }
-      }
-      }
-      stage('Deploy using Ansible') {
-        steps {
-	 ansiblePlaybook credentialsId: 'prod-server', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'deploy-playbook.yml'
-        }
-      }
-      }
-      }
+    
+
+
+
+
+
+
+}
+}
+    
